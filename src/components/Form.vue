@@ -39,8 +39,8 @@ export default {
     onSubmit: async function () {
       if (this.$refs.form.validate()) {
         const forecast = await forecastService.getForecastByCityName(this.cityName);
-        console.table(forecast.items);
-        this.$emit('forecast-received', forecast.items)
+        console.dir(forecast);
+        this.$emit('forecast-received', forecast)
       }
     }
   }

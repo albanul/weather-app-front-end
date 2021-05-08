@@ -28,8 +28,9 @@
     <v-row>
       <v-divider class="mb-4"></v-divider>
     </v-row>
-    <v-row justify="center" class="pt-4" v-if="!cardsAreEmpty">
-      <Cards :cards="cards"/>
+    <v-row v-if="!cardsAreEmpty">
+      <h2>5 days forecast for {{ cityName }}</h2>
+      <Cards :cards="cards" class="mt-4"/>
     </v-row>
     <v-row justify="center" v-else-if="cardsAreEmpty">
       <p>Sorry, nothing has been found. Please try another value...</p>
@@ -45,11 +46,15 @@ export default {
   name: 'Content',
   components: {Cards, Form},
   data: () => ({
+    cityName: null,
+    zipCode: null,
     cards: null
   }),
   methods: {
-    forecastReceived: function (cards) {
-      this.cards = cards;
+    forecastReceived: function (data) {
+      this.cityName = data.cityName;
+      this.zipCode = data.zipCode;
+      this.cards = data.items;
     }
   },
   computed: {
