@@ -28,8 +28,11 @@
     <v-row>
       <v-divider class="mb-4"></v-divider>
     </v-row>
-    <v-row justify="center" class="pt-4">
+    <v-row justify="center" class="pt-4" v-if="!cardsAreEmpty">
       <Cards :cards="cards"/>
+    </v-row>
+    <v-row justify="center" v-else-if="cardsAreEmpty">
+      <p>Sorry, nothing has been found. Please try another value...</p>
     </v-row>
   </v-container>
 </template>
@@ -42,11 +45,16 @@ export default {
   name: 'Content',
   components: {Cards, Form},
   data: () => ({
-    cards: []
+    cards: null
   }),
   methods: {
     forecastReceived: function (cards) {
       this.cards = cards;
+    }
+  },
+  computed: {
+    cardsAreEmpty: function () {
+      return this.cards && this.cards.length === 0;
     }
   }
 }
