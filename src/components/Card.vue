@@ -1,8 +1,8 @@
 <template>
   <v-card
+      class="mr-2 mb-2"
       elevation="2"
       outlined
-      class="mr-2 mb-2"
   >
     <v-card-title>
       {{ date }}
@@ -11,9 +11,9 @@
     </v-card-title>
     <v-card-text>
       <v-list>
-        <CardProperty :icon="'mdi-thermometer'" :text="temperature" />
-        <CardProperty :icon="'mdi-water'" :text="humidity" />
-        <CardProperty :icon="'mdi-weather-windy'" :text="windSpeed" />
+        <CardProperty :icon="'mdi-thermometer'" :text="temperature"/>
+        <CardProperty :icon="'mdi-water'" :text="humidity"/>
+        <CardProperty :icon="'mdi-weather-windy'" :text="windSpeed"/>
       </v-list>
     </v-card-text>
   </v-card>
@@ -21,9 +21,7 @@
 
 <script>
 import CardProperty from '@/components/CardProperty';
-import { DateTime } from 'luxon'
-
-const roundToOneDecimal = (value) =>Math.round(value * 10) / 10;
+import utils from "@/utils/utils";
 
 export default {
   components: {CardProperty},
@@ -33,21 +31,21 @@ export default {
   name: "Card",
   computed: {
     date: function () {
-      return DateTime.fromISO(this.card.date).toFormat('DDD');
+      return utils.toDateWithFullMonth(this.card.date);
     },
     dayOfWeek: function () {
-      return DateTime.fromISO(this.card.date).toFormat('EEEE');
+      return utils.toDayOfWeek(this.card.date);
     },
     temperature: function () {
-      const rounded = roundToOneDecimal(this.card.temperature);
+      const rounded = utils.roundToOneDecimal(this.card.temperature);
       return `Temperature: ${rounded} °C`;
     },
     humidity: function () {
-      const rounded = roundToOneDecimal(this.card.humidity);
+      const rounded = utils.roundToOneDecimal(this.card.humidity);
       return `Humidity: ${rounded} %`;
     },
     windSpeed: function () {
-      const rounded = roundToOneDecimal(this.card.windSpeed);
+      const rounded = utils.roundToOneDecimal(this.card.windSpeed);
       return `Wind speed: ${rounded} m/s`;
     }
   }
