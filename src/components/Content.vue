@@ -28,7 +28,7 @@
     <v-row>
       <v-divider class="mb-4"></v-divider>
     </v-row>
-    <v-row v-if="!cardsAreEmpty">
+    <v-row v-if="cardsAreNotEmpty">
       <h2>5 days forecast for {{ cityName }}</h2>
       <Cards :cards="cards" class="mt-4"/>
     </v-row>
@@ -58,6 +58,9 @@ export default {
     }
   },
   computed: {
+    cardsAreNotEmpty: function () {
+      return this.cards && this.cards.length > 0;
+    },
     cardsAreEmpty: function () {
       return this.cards && this.cards.length === 0;
     }
