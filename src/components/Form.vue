@@ -17,6 +17,7 @@
         color="success"
         class="mr-4"
         type="submit"
+        :loading="loading"
     >
       Check weather
     </v-btn>
@@ -29,6 +30,7 @@ import forecastService from "@/services/forecastService";
 export default {
   name: 'Form',
   data: () => ({
+    loading: false,
     valid: false,
     cityName: '',
     cityNameRules: [
@@ -38,7 +40,9 @@ export default {
   methods: {
     onSubmit: async function () {
       if (this.$refs.form.validate()) {
+        this.loading = true;
         const forecast = await forecastService.getForecastByCityName(this.cityName);
+        this.loading = false;
         console.dir(forecast);
         this.$emit('forecast-received', forecast)
       }
