@@ -24,11 +24,11 @@ import CardProperty from '@/components/CardProperty';
 import utils from "@/utils/utils";
 
 export default {
-  components: {CardProperty},
+  name: "Card",
   props: {
     card: Object
   },
-  name: "Card",
+  components: {CardProperty},
   computed: {
     date: function () {
       return utils.toDateWithFullMonth(this.card.date);

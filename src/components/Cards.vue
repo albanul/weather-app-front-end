@@ -9,10 +9,10 @@
 import Card from "@/components/Card";
 
 export default {
+  name: "Cards",
   props: {
     cards: Array
   },
-  name: "Cards",
   components: {Card}
 }
 </script>

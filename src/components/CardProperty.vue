@@ -11,11 +11,11 @@
 
 <script>
 export default {
+  name: "CardProperty",
   props: {
     icon: String,
     text: String
-  },
-  name: "CardProperty"
+  }
 }
 </script>
 
