@@ -28,41 +28,23 @@
     <v-row>
       <v-divider class="mb-4"></v-divider>
     </v-row>
-    <v-row v-if="cardsAreNotEmpty">
-      <h2>5 days forecast for {{ cityName }}</h2>
-      <Cards :cards="cards" class="mt-4"/>
-    </v-row>
-    <v-row justify="center" v-else-if="cardsAreEmpty">
-      <p>Sorry, nothing has been found. Please try another value...</p>
-    </v-row>
+    <SearchResult :response="response"/>
   </v-container>
 </template>
 
 <script>
 import Form from "@/components/Form";
-import Cards from "@/components/Cards";
+import SearchResult from "@/components/SearchResult";
 
 export default {
   name: 'Content',
-  components: {Cards, Form},
+  components: {SearchResult, Form},
   data: () => ({
-    cityName: null,
-    zipCode: null,
-    cards: null
+    response: null
   }),
   methods: {
     forecastReceived: function (data) {
-      this.cityName = data.cityName;
-      this.zipCode = data.zipCode;
-      this.cards = data.items;
-    }
-  },
-  computed: {
-    cardsAreNotEmpty: function () {
-      return this.cards && this.cards.length > 0;
-    },
-    cardsAreEmpty: function () {
-      return this.cards && this.cards.length === 0;
+      this.response = data;
     }
   }
 }
