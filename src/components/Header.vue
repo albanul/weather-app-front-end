@@ -5,25 +5,20 @@
       dark
       flat
   >
-    <!--    <v-app-bar-nav-icon></v-app-bar-nav-icon>-->
-
-    <v-toolbar-title>WeatherApp</v-toolbar-title>
-
     <v-spacer></v-spacer>
 
-    <template>
-      <v-tabs align-with-title :value="currentPageIndex">
-        <v-tabs-slider color="yellow"></v-tabs-slider>
+    <v-tabs align-with-title :value="currentPageIndex">
+      <v-tabs-slider color="yellow"></v-tabs-slider>
 
-        <v-tab
-            v-for="page in pages"
-            :key="page.name"
-            v-on:click="onTabClick(page)"
-        >
-          {{ page.name }}
-        </v-tab>
-      </v-tabs>
-    </template>
+      <v-tab
+          v-for="page in pages"
+          :key="page.name"
+          v-on:click="onTabClick(page)"
+      >
+        {{ page.name }}
+      </v-tab>
+    </v-tabs>
+
   </v-app-bar>
 </template>
 
