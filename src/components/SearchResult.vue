@@ -1,7 +1,7 @@
 <template>
   <v-col v-if="!!searchResult">
     <v-row v-if="cardsAreNotEmpty">
-      <h2>5 days forecast for {{ searchQuery }}</h2>
+      <h2>6 days forecast for {{ searchQuery }}</h2>
       <Cards :cards="cards" class="mt-4"/>
     </v-row>
     <v-row justify="center" v-else-if="cardsAreEmpty">
