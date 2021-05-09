@@ -92,7 +92,7 @@ export default {
 
         history = JSON.parse(history);
 
-        history.push(forecast)
+        history.unshift(forecast)
 
         localStorage.setItem('history', JSON.stringify(history))
       }
