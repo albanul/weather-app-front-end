@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <Header/>
-    <Content/>
+    <router-view/>
   </v-app>
 </template>
 
 <script>
-import Content from './components/Content';
+// import Content from './components/Content';
 import Header from "@/components/Header";
 
 export default {
@@ -14,7 +14,7 @@ export default {
 
   components: {
     Header,
-    Content,
+    // Content,
   },
 
   data: () => ({

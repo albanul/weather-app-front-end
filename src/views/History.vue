@@ -1,0 +1,10 @@
+<template>
+  <v-main>
+    <v-container>
+      <div class="about">
+        <h1>This is an history page</h1>
+      </div>
+    </v-container>
+  </v-main>
+
+</template>
