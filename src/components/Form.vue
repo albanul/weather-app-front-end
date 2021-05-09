@@ -83,6 +83,18 @@ export default {
         const forecast = await getForecastDictionary[this.searchType](this.searchQuery);
         this.loading = false;
         this.$emit('forecast-received', forecast)
+
+        // TODO ALBA: create localStorageService
+        let history = localStorage.getItem('history')
+        if (!history) {
+          history = "[]";
+        }
+
+        history = JSON.parse(history);
+
+        history.push(forecast)
+
+        localStorage.setItem('history', JSON.stringify(history))
       }
     },
     onSearchTypeChange: function () {
