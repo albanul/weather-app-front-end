@@ -49,6 +49,7 @@
 
 <script>
 import forecastService from "@/services/forecastService";
+import forecastHistoryService from "@/services/forecastHistoryService";
 
 const cityName = 'City name';
 const zipCode = 'ZIP code';
@@ -82,19 +83,8 @@ export default {
         this.loading = true;
         const forecast = await getForecastDictionary[this.searchType](this.searchQuery);
         this.loading = false;
-        this.$emit('forecast-received', forecast)
-
-        // TODO ALBA: create localStorageService
-        let history = localStorage.getItem('history')
-        if (!history) {
-          history = "[]";
-        }
-
-        history = JSON.parse(history);
-
-        history.unshift(forecast)
-
-        localStorage.setItem('history', JSON.stringify(history))
+        this.$emit('forecast-received', forecast);
+        forecastHistoryService.addForecastToHistory(forecast);
       }
     },
     onSearchTypeChange: function () {

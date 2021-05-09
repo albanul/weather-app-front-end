@@ -27,8 +27,8 @@
 </template>
 
 <script>
-
 import SearchResult from "@/components/SearchResult";
+import forecastHistoryService from "@/services/forecastHistoryService";
 
 export default {
   name: 'History',
@@ -37,14 +37,7 @@ export default {
     history: null
   }),
   created() {
-    let history = localStorage.getItem('history');
-    if (!history) {
-      history = '[]';
-    }
-
-    history = JSON.parse(history);
-
-    this.history = history;
+    this.history = forecastHistoryService.getHistory();
   }
 }
 </script>
